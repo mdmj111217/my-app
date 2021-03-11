@@ -14,8 +14,8 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_YONDU_ANGULAR_CODING_EXAM }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_YONDU_ANGULAR_EXAM }}'
           channelId: live
-          projectId: yondu-angular-coding-exam
+          projectId: yondu-angular-exam
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels

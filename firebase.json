@@ -1,10 +1,17 @@
 {
   "hosting": {
-    "public": "src",
+    "public": "dist/my-app",
+    "site": "yondu-angular-exam",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
