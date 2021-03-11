@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <table mat-table [dataSource]="dataSource" class="table table-striped table-hover">
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef> First Name </th>
+          <td mat-cell *matCellDef="let user"> {{ user.firstName }} </td>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef> Last Name </th>
+          <td mat-cell *matCellDef="let user"> {{ user.lastName }} </td>
+        </ng-container>
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Age </th>
+          <td mat-cell *matCellDef="let user"> {{ user.age }} </td>
+        </ng-container>
+        <ng-container matColumnDef="mobile">
+          <th mat-header-cell *matHeaderCellDef> Mobile # </th>
+          <td mat-cell *matCellDef="let user"> {{ user.mobile }} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email Address </th>
+          <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Mailing Address </th>
+          <td mat-cell *matCellDef="let user"> {{ user.address }} </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef> &nbsp; </th>
+          <td mat-cell *matCellDef="let i = index">
+            <button mat-icon-button class="btn btn-danger" (click)="onDelete(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableColumns; let i = index" (click)="selectRow(row, i)"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row"></div>
+
+  <div class="row">
+    <div class="col-md">
+      <table class="table table-sm table-borderless inputTable">
+        <tr>
+          <td class="labels">First Name:</td>
+          <td><input matInput [(ngModel)]="firstName"></td>
+        </tr>
+        <tr>
+          <td class="labels">Last Name:</td>
+          <td><input matInput [(ngModel)]="lastName"></td>
+        </tr>
+        <tr>
+          <td class="labels">Age:</td>
+          <td><input matInput [(ngModel)]="age" (keypress)="numberOnly($event)" maxlength="2"></td>
+        </tr>
+        <tr>
+          <td class="labels">Mobile #:</td>
+          <td><input matInput [ngModel]="phoneNum | MobilePipe" (ngModelChange)="phoneNum=$event" maxlength="15"></td>
+        </tr>
+        <tr>
+          <td class="labels">E-mail Address:</td>
+          <td><input matInput [(ngModel)]="email" type="email" [formControl]="emailFormControl">
+            <mat-error *ngIf="emailFormControl.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td class="labels">Mailing Address:</td>
+          <td><input matInput [(ngModel)]="address"></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button mat-button class="btn btn-primary mx-1" (click)="onSave()">Save</button>
+            <button mat-button class="btn btn-primary mx-1" (click)="onUpdate()">Update</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
